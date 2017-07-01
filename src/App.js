@@ -21,8 +21,6 @@ class App extends Component {
   }
 
   updateMessage(message) {
-    //if message includes : get all search terms, ignore any that have
-
     if (message.includes(':')) {
       const stripped = message.replace(new RegExp(/:\w+:/, 'gi'), '');
       const match = stripped.match(new RegExp(/:\w+/), 'gi');
@@ -34,28 +32,6 @@ class App extends Component {
       });
     }
 
-    // if (message.includes(':')) {
-    //   const lastIndex = this.state.message.lastIndexOf(':');
-    //   if (lastIndex === this.state.message.length) {
-    //
-    //   }
-    //   this.setState({ searchTermIndex:  });
-    // }
-    //
-    // if (this.state.searchTermIndex) {
-    //   this.setState({ open: true });
-    //
-    //   const term = message.substring(this.state.searchTermIndex + 1, message.length);
-    //
-    //   if (term.includes(':')) {
-    //     this.setState({ term: '', searchTermIndex: 0, open: false });
-    //   }
-    //
-    //   this.setState({ term });
-    // }
-    //
-    //
-    //
     this.setState({ message });
   }
 
