@@ -9,14 +9,16 @@ function chunk(array: Array<*>, size: number): Array<Array<*>> {
 function rowsSelector(
   categories: Array<Object>,
   emojisByCategory: Array<Object>,
-  modifier: number, term: string
+  modifier: number,
+  term: string
 ): Array<*> {
   const findEmojiVariant = (emojis: Array<Object>): any =>
     (modifier && emojis[modifier]) ? emojis[modifier] : emojis[0];
   const searchTermRegExp = new RegExp(`^(?:.* +)*${escape(term)}`, 'i');
-  const keywordMatchesSearchTerm = (keyword: string): boolean => searchTermRegExp.test(keyword);
   const emojiMatchesSearchTerm = (emoji: Object): boolean =>
-    emoji.keywords.concat(emoji.name).some(keywordMatchesSearchTerm);
+    emoji.keywords
+      .concat(emoji.name)
+      .some((keyword: string): boolean => searchTermRegExp.test(keyword));
 
   return categories.map((category, id) => {
     const { key } = category;

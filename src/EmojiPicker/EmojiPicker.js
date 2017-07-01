@@ -43,7 +43,8 @@ const Search = styled.input`
 `;
 
 type PropTypes = {
-  onChange: Function
+  onChange: Function,
+  search: string,
 }
 
 export default class Picker extends Component {
@@ -87,6 +88,10 @@ export default class Picker extends Component {
 
   componentDidMount() {
     this.setState({ category: this.categories.getActiveCategory() }); // eslint-disable-line
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ term: (nextProps.search !== '') ? nextProps.search : '' });
   }
 
   setFocus(ev: Event) {
