@@ -1,6 +1,6 @@
 import strategy from 'emojione/emoji.json';
 
-function createEmojis(emojiStrategy) {
+function createEmojis(emojiStrategy: Object): Object {
   const emojis = {};
 
   const keys = Object.keys(emojiStrategy);

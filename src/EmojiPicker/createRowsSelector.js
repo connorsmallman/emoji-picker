@@ -1,3 +1,5 @@
+import { type Emoji } from '../Types/Emoji';
+
 function chunk(array: Array<*>, size: number): Array<Array<*>> {
   const results = [];
   while (array.length) {
@@ -57,10 +59,10 @@ export default function createRowsSelector() {
   let lastResult;
 
   return function memoizedRowsSelector(
-    categories,
-    emojisByCategory,
-    modifier,
-    term
+    categories: Array<string>,
+    emojisByCategory: Array<Emoji>,
+    modifier: number,
+    term: string
   ) {
     if (
       categories !== lastCategories ||

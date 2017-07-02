@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import React, { type Element } from 'react';
 import styled from 'styled-components';
 
 const Decoration = styled.div`
@@ -18,7 +18,7 @@ type PropTypes = {
   category: Object
 }
 
-const CategoryHeader = (props: PropTypes) => (
+const CategoryHeader = (props: PropTypes): Element<*> => (
   <div style={props.style}>
     <Title>{props.category.title}</Title>
     <Decoration>{props.headingDecoration}</Decoration>

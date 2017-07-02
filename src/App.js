@@ -22,8 +22,10 @@ class App extends Component {
 
   updateMessage(message) {
     if (message.includes(':')) {
-      const stripped = message.replace(new RegExp(/:\w+:/, 'gi'), '');
-      const match = stripped.match(new RegExp(/:\w+/), 'gi');
+      // strip any completed shortnames then check for uncomleted  
+      const match = message
+        .replace(new RegExp(/:\w+:/, 'gi'), '')
+        .match(new RegExp(/:\w+/), 'gi');
 
       this.setState({
         term: (match) ? match[0].replace(':', '') : '',

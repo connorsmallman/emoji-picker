@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// @flow
+import React, { Component, type Element } from 'react';
 import styled from 'styled-components';
 import Emoji from './Emoji';
 
@@ -8,8 +9,13 @@ const Row = styled.div`
   padding-left: 10px
 `;
 
+type PropTypes = {
+  emojis: Array<Object>
+  onChange: Function
+}
+
 class EmojiRow extends Component {
-  constructor(props) {
+  constructor(props: PropTypes) {
     super(props);
     this.handleEmojiSelect = this.handleEmojiSelect.bind(this);
   }
@@ -18,7 +24,7 @@ class EmojiRow extends Component {
     this.props.onChange(emoji);
   }
 
-  render() {
+  render(): Element<*> {
     const { emojis, style } = this.props;
 
     return (

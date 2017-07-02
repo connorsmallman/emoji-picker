@@ -90,7 +90,7 @@ export default class Picker extends Component {
     this.setState({ category: this.categories.getActiveCategory() }); // eslint-disable-line
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: PropTypes) {
     this.setState({ term: (nextProps.search !== '') ? nextProps.search : '' });
   }
 
