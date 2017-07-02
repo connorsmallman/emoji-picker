@@ -10,11 +10,13 @@ const Row = styled.div`
 `;
 
 type PropTypes = {
-  emojis: Array<Object>
+  emojis: Array<Object>,
   onChange: Function
 }
 
 class EmojiRow extends Component {
+  handleEmojiSelect: Function
+
   constructor(props: PropTypes) {
     super(props);
     this.handleEmojiSelect = this.handleEmojiSelect.bind(this);

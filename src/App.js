@@ -1,6 +1,24 @@
 import React, { Component } from 'react';
-import EmojiPicker from './EmojiPicker';
+import EmojiPicker from './Emoji/Picker';
+import EmojiTrigger from './Emoji/Trigger';
 import Dropdown from './Dropdown';
+import styled from 'styled-components';
+
+const EmojiDropdownWrapper = styled.div`
+  position: relative;
+
+  input {
+    width: 100%;
+    height: 2.4rem;
+  }
+
+  button {
+    position: absolute;
+    right: .2rem;
+    top: .2rem;
+    z-index: 1;
+  }
+`;
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +40,7 @@ class App extends Component {
 
   updateMessage(message) {
     if (message.includes(':')) {
-      // strip any completed shortnames then check for uncomleted  
+      // strip any completed shortnames then check for uncomleted
       const match = message
         .replace(new RegExp(/:\w+:/, 'gi'), '')
         .match(new RegExp(/:\w+/), 'gi');
@@ -61,13 +79,16 @@ class App extends Component {
         <textarea value={this.state.messages}>
         </textarea>
         <div>
-        <input ref={input => this.messageInput = input}  value={this.state.message} type="text" onChange={ev => this.updateMessage(ev.target.value)} />
-        <button onClick={this.toggleDropdown}>Open</button>
+          <EmojiDropdownWrapper>
+            <Dropdown open={this.state.open} transformOrigin={'right bottom'}>
+              <EmojiPicker onChange={this.handleEmojiChange} search={this.state.term}/>
+            </Dropdown>
+            <input ref={input => this.messageInput = input}  value={this.state.message} type="text" onChange={ev => this.updateMessage(ev.target.value)} />
+            <EmojiTrigger onClick={this.toggleDropdown} open={this.state.open}>Open</EmojiTrigger>
+          </EmojiDropdownWrapper>
         </div>
         <button type='submit' onClick={this.submitMessage}>Send</button>
-        <Dropdown open={this.state.open}>
-          <EmojiPicker onChange={this.handleEmojiChange} search={this.state.term}/>
-        </Dropdown>
+
       </div>
     );
   }
